@@ -1,0 +1,32 @@
+<section id="neuron" data-transition="fade" style="background:#F7F5F0;color:#172033;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;gap:16px">
+<p style="font-size:24px;padding:6px 18px;border-radius:999px;background:#F3DFCC;color:#7A3608">Recall · Week 2 · dot product</p>
+</div>
+<h2 style="font-size:60px;font-weight:600;line-height:1.1;color:#172033">A neuron is one dot product that draws a line</h2>
+</div>
+<div style="display:flex;gap:64px;align-items:center;flex:1">
+<div style="position:relative;width:760px;height:560px">
+<svg aria-label="A plane split by the line w-transpose x plus b equals zero, with the normal vector w pointing into the shaded positive side" width="760" height="560" viewBox="0 0 760 560" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="760" height="560" fill="#FFFFFF" stroke="#D9D5CA" stroke-width="2"/>
+<polygon points="0,559 760,1 760,560 0,560" fill="#DCE7F5"/>
+<line x1="0" y1="559" x2="760" y2="1" stroke="#172033" stroke-width="5"/>
+<line x1="380" y1="280" x2="462" y2="392" stroke="#B85410" stroke-width="6"/>
+<polygon points="478,414 446,396 472,378" fill="#B85410"/>
+<circle cx="380" cy="280" r="8" fill="#172033"/>
+</svg>
+<p style="position:absolute;left:60px;top:60px;width:340px;font-family:'STIX Two Text', 'Times New Roman', serif;font-size:36px;color:#445064"><b>w</b>ᵀ<b>x</b> + <i>b</i> &lt; 0</p>
+<p style="position:absolute;left:420px;top:460px;width:320px;font-family:'STIX Two Text', 'Times New Roman', serif;font-size:36px;color:#174A8C"><b>w</b>ᵀ<b>x</b> + <i>b</i> &gt; 0</p>
+<p style="position:absolute;left:490px;top:330px;width:80px;font-family:'STIX Two Text', 'Times New Roman', serif;font-size:40px;color:#B85410"><b>w</b></p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:36px">
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:56px"><i style="color:#1D5FAD">a</i> = <i>φ</i>(<span style="color:#B85410"><b>w</b></span>ᵀ<span style="color:#1D5FAD"><b>x</b></span> + <i style="color:#0E6E63">b</i>)</p>
+<p style="font-size:24px;color:#6B7484">shapes: <b>w</b>, <b>x</b> are 2 × 1 · <b>w</b>ᵀ<b>x</b> and <i>b</i> are scalars</p>
+<p style="font-size:30px;line-height:1.4;color:#445064"><b>w</b>ᵀ<b>x</b> + <i>b</i> = 0 is a line (a <b>hyperplane</b> in higher dimensions). <b>w</b> is its normal; the sign tells which side <b>x</b> is on.</p>
+<p style="font-size:30px;line-height:1.4;color:#445064"><i>φ</i> = the <b>activation</b> (a fixed non-linear function applied afterwards).</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1300px;font-size:24px;color:#6B7484">Symbols: <b>x</b> input · <b>w</b> weights · <i>b</i> bias · <i>φ</i> activation</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B7484;text-align:right">2 / 14</p>
+<aside>[Zyik, about 45 s] Start from the Week 2 dot product. A single neuron takes the input vector x, takes a dot product with its weight vector w, adds a bias b, then applies a fixed function phi. Geometrically, w-transpose-x plus b equals zero is a line in 2D, a hyperplane in general; w is perpendicular to it, and b shifts it. So before phi, a neuron answers one question: which side of my line is this point on, and how far? Note the line is a shifted copy of the null space of w-transpose, Week 9. We avoid sigma for the activation because sigma means singular value in our course notation.</aside>
+</section>

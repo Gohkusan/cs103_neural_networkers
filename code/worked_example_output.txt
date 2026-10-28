@@ -1,0 +1,199 @@
+====================================================================== 
+PART 1: Goodfellow et al. (2016) sec. 6.1 exact XOR solution
+
+x_1 = [0. 0.]  z1 = [ 0. -1.]  a1 = [0. 0.]  yhat = [0.]
+x_2 = [0. 1.]  z1 = [1. 0.]  a1 = [1. 0.]  yhat = [1.]
+x_3 = [1. 0.]  z1 = [1. 0.]  a1 = [1. 0.]  yhat = [1.]
+x_4 = [1. 1.]  z1 = [2. 1.]  a1 = [2. 1.]  yhat = [0.]
+
+b1 1^T  shape 2x4
+[[ 0.  0.  0.  0.]
+ [-1. -1. -1. -1.]]
+
+Z1 = W1 X + b1 1^T  shape 2x4
+[[ 0.  1.  1.  2.]
+ [-1.  0.  0.  1.]]
+
+A1 = ReLU(Z1)  shape 2x4
+[[0. 1. 1. 2.]
+ [0. 0. 0. 1.]]
+
+Yhat = W2 A1 + b2 1^T  shape 1x4
+[[0. 1. 1. 0.]]
+
+loss (sum, 1/2) = 0.0 
+
+====================================================================== 
+PART 2: one gradient-descent step from a PERTURBED start (W2 = [1 -1])
+
+Z1  shape 2x4
+[[ 0.  1.  1.  2.]
+ [-1.  0.  0.  1.]]
+
+A1 = ReLU(Z1)  shape 2x4
+[[0. 1. 1. 2.]
+ [0. 0. 0. 1.]]
+
+Yhat  shape 1x4
+[[0. 1. 1. 1.]]
+
+Yhat - Y  shape 1x4
+[[0. 0. 0. 1.]]
+
+loss before = 0.5 
+
+Delta2 = Yhat - Y  shape 1x4
+[[0. 0. 0. 1.]]
+
+dl/dW2 = Delta2 A1^T  shape 1x2
+[[2. 1.]]
+
+dl/db2 = Delta2 1  shape 1x1
+[[1.]]
+
+(W2)^T Delta2  shape 2x4
+[[ 0.  0.  0.  1.]
+ [ 0.  0.  0. -1.]]
+
+ReLU'(Z1)  shape 2x4
+[[0. 1. 1. 1.]
+ [0. 0. 0. 1.]]
+
+Delta1  shape 2x4
+[[ 0.  0.  0.  1.]
+ [ 0.  0.  0. -1.]]
+
+dl/dW1 = Delta1 X^T  shape 2x2
+[[ 1.  1.]
+ [-1. -1.]]
+
+dl/db1 = Delta1 1  shape 2x1
+[[ 1.]
+ [-1.]]
+
+delta1_1 x_1^T =
+[[0. 0.]
+ [0. 0.]]
+delta1_2 x_2^T =
+[[0. 0.]
+ [0. 0.]]
+delta1_3 x_3^T =
+[[0. 0.]
+ [0. 0.]]
+delta1_4 x_4^T =
+[[ 1.  1.]
+ [-1. -1.]]
+sum of outer products equals Delta1 X^T: True
+rank(dl/dW1) = 1 
+
+finite-difference check, max |analytic - numeric| for W1,b1,W2,b2: [np.float64(2.4982693602737527e-07), np.float64(4.999324278998074e-07), np.float64(8.126654904572206e-11), np.float64(1.000088900582341e-12)]
+overall max abs diff = 4.999324278998074e-07 
+
+W1 new  shape 2x2
+[[0.9 0.9]
+ [1.1 1.1]]
+
+b1 new  shape 2x1
+[[-0.1]
+ [-0.9]]
+
+W2 new  shape 1x2
+[[ 0.8 -1.1]]
+
+b2 new  shape 1x1
+[[-0.1]]
+
+Z1 new  shape 2x4
+[[-0.1  0.8  0.8  1.7]
+ [-0.9  0.2  0.2  1.3]]
+
+A1 new  shape 2x4
+[[0.  0.8 0.8 1.7]
+ [0.  0.2 0.2 1.3]]
+
+Yhat new  shape 1x4
+[[-0.1   0.32  0.32 -0.17]]
+
+loss before = 0.500000, after = 0.481850, decreased: True
+
+random point: min |z1| = 0.36159505490948474
+random-point finite-difference max abs diff = 1.244075953366064e-10 
+
+====================================================================== 
+PART 3: single-sample slide version, x = [1 1]^T, y = 0
+
+z1  shape 2x1
+[[2.]
+ [1.]]
+
+a1  shape 2x1
+[[2.]
+ [1.]]
+
+yhat  shape 1x1
+[[1.]]
+
+loss = 0.5
+delta2  shape 1x1
+[[1.]]
+
+dl/dW2 = delta2 a1^T  shape 1x2
+[[2. 1.]]
+
+(W2)^T delta2  shape 2x1
+[[ 1.]
+ [-1.]]
+
+delta1  shape 2x1
+[[ 1.]
+ [-1.]]
+
+dl/dW1 = delta1 x^T  shape 2x2
+[[ 1.  1.]
+ [-1. -1.]]
+
+after step: yhat = [-0.17]  loss = 0.014450000000000055
+(for comparison x = [1 0]^T gives yhat = [1.] = y, so loss 0)
+
+====================================================================== 
+PART 4: collapse demo (identity activation) and least squares
+
+W2 W1  shape 1x2
+[[-1. -1.]]
+
+W2 b1 + b2  shape 1x1
+[[2.]]
+
+two-layer identity output  shape 1x4
+[[2. 1. 1. 0.]]
+
+single affine map output  shape 1x4
+[[2. 1. 1. 0.]]
+
+identical: True
+rank(W1) = 1  rank(W2 W1) = 1 
+
+[X; 1^T]  shape 3x4
+[[0. 0. 1. 1.]
+ [0. 1. 0. 1.]
+ [1. 1. 1. 1.]]
+
+[X; 1^T][X; 1^T]^T  shape 3x3
+[[2. 1. 2.]
+ [1. 2. 2.]
+ [2. 2. 4.]]
+
+[X; 1^T] y  shape 3x1
+[[1.]
+ [1.]
+ [2.]]
+
+theta = [w1 w2 b]^T  shape 3x1
+[[0. ]
+ [0. ]
+ [0.5]]
+
+least-squares predictions  shape 1x4
+[[0.5 0.5 0.5 0.5]]
+
+least-squares loss (1/2 sum) = 0.5

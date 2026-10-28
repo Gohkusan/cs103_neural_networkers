@@ -1,0 +1,24 @@
+<section id="bend" data-transition="fade" style="display:flex; flex-direction:column; gap:36px; padding:128px 128px 160px; background:#f7f5f0">
+  <div style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; flex-direction:row; gap:16px">
+      <p style="padding:6px 18px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; color:#174a8c; background:#dce7f5; border-radius:256px">New · activation functions</p>
+      <p style="padding:6px 18px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; color:#7a3608; background:#f3dfcc; border-radius:256px">Recall · Week 9 · null space</p>
+    </div>
+    <h2 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:60px; font-weight:600; line-height:1.1; color:#172033">An element-wise bend makes XOR solvable</h2>
+  </div>
+  <img src="/_blob/ec81df33e3678664dc64905ccc5b98dd" alt="Four panels: identity, logistic (sigmoid), tanh and ReLU, each with its derivative dashed. Logistic derivative peaks at 0.25, tanh derivative at 1, ReLU derivative is a 0 or 1 step." style="width:1400px; height:364px; align-self:center; background:#ffffff; border-radius:12px; object-fit:contain">
+  <div style="display:flex; flex-direction:row; gap:40px; align-items:center">
+    <div style="display:flex; flex-direction:column; gap:12px; flex:1">
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:30px; line-height:1.4; color:#445064">Our <b>W</b>⁽¹⁾ has rank 1, with 𝒩(<b>W</b>⁽¹⁾) = span{[1 −1]ᵀ}, so both hidden units see only <i>s</i> = <i>x</i>₁ + <i>x</i>₂.</p>
+      <p style="font-family:'STIX Two Text', 'Times New Roman', serif; font-size:40px; color:#172033"><i>ŷ</i> = ReLU(<i>s</i>) − 2 ReLU(<i>s</i> − 1)</p>
+    </div>
+    <table style="flex:1; font-family:'STIX Two Text', 'Times New Roman', serif; font-size:36px; color:#172033">
+      <tr><th style="width:40%">s</th><th style="width:20%; text-align:center">0</th><th style="width:20%; text-align:center">1</th><th style="width:20%; text-align:center">2</th></tr>
+      <tr><td>ŷ</td><td style="text-align:center">0</td><td style="text-align:center">1</td><td style="text-align:center">0</td></tr>
+    </table>
+    <p style="width:300px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#445064">A tent: no affine function of <i>s</i> does this.</p>
+  </div>
+  <p style="position:absolute; bottom:64px; left:128px; width:1400px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; color:#6b7484">“Sigmoid” = logistic, 1/(1 + e⁻ᶻ); we never call it σ, which means singular value in our notation.</p>
+  <p style="position:absolute; right:128px; bottom:64px; width:200px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; text-align:right; color:#6b7484">6 / 14</p>
+  <aside>[Voon, about 55 s] The fix is a bend applied to each entry separately. The four common choices are plotted, with their derivatives dashed: identity, logistic (often called sigmoid), tanh and ReLU. ReLU keeps scaling by a non-negative number but breaks additivity, so it is not linear, and the collapse argument no longer goes through. Why XOR works: our first-layer matrix has rank 1, its null space is spanned by [1, -1], so both hidden neurons only see s = x1 + x2. The output is ReLU(s) minus 2 ReLU(s minus 1), which gives 0, 1, 0 at s = 0, 1, 2: a tent. A straight line in s can never go up and then down, so no affine model can do this. Notice the logistic derivative never exceeds one quarter; that matters on slide 12.</aside>
+</section>

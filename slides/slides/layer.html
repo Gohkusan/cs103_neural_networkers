@@ -1,0 +1,33 @@
+<section id="layer" data-transition="fade" style="background:#F7F5F0;color:#172033;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;gap:16px">
+<p style="font-size:24px;padding:6px 18px;border-radius:999px;background:#F3DFCC;color:#7A3608">Recall · Week 2 · row and column pictures</p>
+</div>
+<h2 style="font-size:60px;font-weight:600;line-height:1.1;color:#172033">Stack neurons as rows: a layer is <span style="color:#B85410">W</span>x + <span style="color:#0E6E63">b</span></h2>
+</div>
+<div style="display:flex;gap:40px;align-items:start;font-family:'STIX Two Text', 'Times New Roman', serif">
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><p style="font-size:64px;color:#6A3DB8"><b>z</b>⁽ˡ⁾</p><p style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:24px;color:#6B7484"><i>n</i>ₗ × 1</p></div>
+<p style="font-size:64px">=</p>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><p style="font-size:64px;color:#B85410"><b>W</b>⁽ˡ⁾</p><p style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:24px;color:#6B7484"><i>n</i>ₗ × <i>n</i>ₗ₋₁</p></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><p style="font-size:64px;color:#1D5FAD"><b>a</b>⁽ˡ⁻¹⁾</p><p style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:24px;color:#6B7484"><i>n</i>ₗ₋₁ × 1</p></div>
+<p style="font-size:64px">+</p>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><p style="font-size:64px;color:#0E6E63"><b>b</b>⁽ˡ⁾</p><p style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:24px;color:#6B7484"><i>n</i>ₗ × 1</p></div>
+<p style="font-size:64px;padding:0 24px">,</p>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><p style="font-size:64px"><span style="color:#1D5FAD"><b>a</b></span>⁽ˡ⁾ = <i>φ</i>(<span style="color:#6A3DB8"><b>z</b></span>⁽ˡ⁾)</p><p style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:24px;color:#6B7484"><i>φ</i> acts on each entry</p></div>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDD8CC;border-radius:16px">
+<h3 style="font-size:36px;font-weight:600;color:#172033">Row picture</h3>
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:40px"><i>z</i>ᵢ = <span style="color:#B85410"><b>w</b>ᵢ</span>ᵀ<span style="color:#1D5FAD"><b>a</b></span> + <i style="color:#0E6E63">b</i>ᵢ</p>
+<p style="font-size:30px;line-height:1.4;color:#445064">Row <i>i</i> of <b>W</b> is neuron <i>i</i>: one dot product each.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFFFF;padding:40px;border:1px solid #DDD8CC;border-radius:16px">
+<h3 style="font-size:36px;font-weight:600;color:#172033">Column picture</h3>
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:40px"><b>Wa</b> = <i>a</i>₁(column 1) + ⋯ + <i>a</i>ₙ(column <i>n</i>)</p>
+<p style="font-size:30px;line-height:1.4;color:#445064">The output is a linear combination of <b>W</b>’s columns.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1300px;font-size:24px;color:#6B7484">Symbols: <b>x</b> = <b>a</b>⁽⁰⁾ · <b>W</b>⁽ˡ⁾, <b>b</b>⁽ˡ⁾ layer <i>l</i> · <b>z</b> pre-activation · <b>a</b> activation · (<i>l</i>) = layer, not a power</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B7484;text-align:right">3 / 14</p>
+<aside>[Zyik, about 45 s] Now take many neurons and stack their weight vectors as the rows of one matrix W. Then all of their dot products happen at once: z equals W a plus b. That is exactly the Week 2 row picture: entry i of the result is row i dotted with the input. The column picture says the same product is a linear combination of W's columns, weighted by the input entries. Check the shapes under each symbol: n_l by n_(l-1) times n_(l-1) by 1 gives n_l by 1, which conforms. The superscript in parentheses is the layer number, never a power. Then phi is applied to every entry separately.</aside>
+</section>

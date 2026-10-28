@@ -1,0 +1,30 @@
+<section id="vanishing" data-transition="fade" style="background:#EEF1F5;color:#172033;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;gap:16px">
+<p style="font-size:24px;padding:6px 18px;border-radius:999px;background:#F6D6D3;color:#8A1C16">Simplification · intuition, not a theorem</p>
+<p style="font-size:24px;padding:6px 18px;border-radius:999px;background:#F3DFCC;color:#7A3608">Recall · Week 11 · powers <b>A</b>ᵏ</p>
+</div>
+<h2 style="font-size:60px;font-weight:600;line-height:1.1;color:#172033">Repeated multiplication by <b>W</b>ᵀ makes gradients vanish or explode</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:18px;font-family:'STIX Two Text', 'Times New Roman', serif;font-size:38px">
+<p><span style="color:#B3261E"><b>δ</b></span>⁽¹⁾ = <b>D</b>⁽¹⁾(<span style="color:#B85410"><b>W</b></span>⁽²⁾)ᵀ <b>D</b>⁽²⁾(<span style="color:#B85410"><b>W</b></span>⁽³⁾)ᵀ ⋯ <span style="color:#B3261E"><b>δ</b></span>⁽ᴸ⁾,   <b>D</b>⁽ˡ⁾ = diag(<i>φ</i>′(<b>z</b>⁽ˡ⁾))</p>
+<p>same <b>W</b>, <i>φ</i>′ = 1:   <span style="color:#B3261E"><b>δ</b></span>⁽¹⁾ = (<b>W</b>ᵀ)ᵏ<span style="color:#B3261E"><b>δ</b></span>⁽ᴸ⁾,   <b>W</b> = <b>SΛS</b>⁻¹ ⟹ (<b>W</b>ᵀ)ᵏ = (<b>S</b>⁻¹)ᵀ<b>Λ</b>ᵏ<b>S</b>ᵀ</p>
+</div>
+<div style="display:flex;gap:28px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FFFFFF;padding:32px;border:1px solid #D5DCE6;border-radius:16px">
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:44px">|<i>λ</i>| &lt; 1</p>
+<p style="font-size:26px;line-height:1.4;color:#445064"><i>λ</i>ᵏ → 0: early layers barely learn (<b>vanishing</b>)</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FFFFFF;padding:32px;border:1px solid #D5DCE6;border-radius:16px">
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:44px">|<i>λ</i>| &gt; 1</p>
+<p style="font-size:26px;line-height:1.4;color:#445064"><i>λ</i>ᵏ grows: steps become huge (<b>exploding</b>)</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FFFFFF;padding:32px;border:1px solid #D5DCE6;border-radius:16px">
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:44px">logistic′ ≤ ¼</p>
+<p style="font-size:26px;line-height:1.4;color:#445064">10 logistic layers: the <b>D</b> factors alone shrink <b>δ</b> by up to (¼)¹⁰ ≈ 10⁻⁶</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#6B7484">Real nets have a different <b>W</b> per layer and <i>φ</i>′ ≠ 1. Rigorous version: Pascanu, Mikolov &amp; Bengio (2013). New: <b>D</b> diagonal matrix.</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B7484;text-align:right">12 / 14</p>
+<aside>[Haide, about 40 s] Look again at the backprop rule: every layer multiplies the error by a W-transpose and by phi-prime. Writing phi-prime as a diagonal matrix D makes it a pure product of matrices. Now a deliberate simplification, so we label it as intuition: suppose every layer had the same W and phi-prime were 1. Then the error is multiplied by W-transpose to the power k, and from Week 11, if W = S Lambda S-inverse, that power is S-inverse-transpose Lambda-to-the-k S-transpose. Eigenvalues with absolute value below 1 shrink to zero: the vanishing gradient, where early layers barely learn. Above 1 they blow up: the exploding gradient. The activation makes it worse: the logistic derivative is at most one quarter, so ten logistic layers can shrink the error by about a million from those factors alone. That is one reason ReLU, whose derivative is 1 where active, became standard. Real networks have different matrices per layer; Pascanu, Mikolov and Bengio 2013 give the rigorous version using norms.</aside>
+</section>

@@ -1,0 +1,32 @@
+<section id="outer" data-transition="fade" style="background:#EEF1F5;color:#172033;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;gap:16px">
+<p style="font-size:24px;padding:6px 18px;border-radius:999px;background:#F3DFCC;color:#7A3608">Recall · Week 2 · outer product</p>
+<p style="font-size:24px;padding:6px 18px;border-radius:999px;background:#F3DFCC;color:#7A3608">Recall · Week 5 · rank</p>
+</div>
+<h2 style="font-size:60px;font-weight:600;line-height:1.1;color:#172033">Each weight gradient is a rank-1 outer product</h2>
+</div>
+<div style="display:flex;gap:24px;align-items:center;font-family:'STIX Two Text', 'Times New Roman', serif;font-size:40px">
+<p>∂ℓ/∂<span style="color:#B85410"><b>W</b></span>⁽¹⁾ = <span style="color:#B3261E"><b>δ</b></span>⁽¹⁾<span style="color:#1D5FAD"><b>x</b></span>ᵀ =</p>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><div style="display:flex;gap:8px"><div style="width:14px;border:3px solid #B3261E;border-right:none"></div><div style="display:grid;grid-template-columns:repeat(1,auto);gap:0;padding:4px 0;color:#B3261E"><p style="text-align:center">1</p><p style="text-align:center">−1</p></div><div style="width:14px;border:3px solid #B3261E;border-left:none"></div></div><p style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:24px;color:#6B7484">2 × 1</p></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><div style="display:flex;gap:8px"><div style="width:14px;border:3px solid #1D5FAD;border-right:none"></div><div style="display:grid;grid-template-columns:repeat(2,auto);gap:0 28px;padding:4px 0;color:#1D5FAD"><p>1</p><p>1</p></div><div style="width:14px;border:3px solid #1D5FAD;border-left:none"></div></div><p style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:24px;color:#6B7484">1 × 2</p></div>
+<p>=</p>
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><div style="display:flex;gap:8px"><div style="width:14px;border:3px solid #172033;border-right:none"></div><div style="display:grid;grid-template-columns:repeat(2,auto);gap:0 28px;padding:4px 0"><p style="text-align:right">1</p><p style="text-align:right">1</p><p style="text-align:right">−1</p><p style="text-align:right">−1</p></div><div style="width:14px;border:3px solid #172033;border-left:none"></div></div><p style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:24px;color:#6B7484">2 × 2, rank 1</p></div>
+<p style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:26px;line-height:1.4;color:#445064;width:420px;padding-left:24px">Entry (<i>i</i>, <i>j</i>) = <i>δ</i>ᵢ <i>x</i>ⱼ: “error out” times “signal in”.</p>
+</div>
+<div style="display:flex;gap:28px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px;border:1px solid #D5DCE6;border-radius:16px">
+<h3 style="font-size:30px;font-weight:600">For a batch: a sum of <i>m</i> rank-1 terms</h3>
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:36px">∂ℓ/∂<b>W</b>⁽ˡ⁾ = <b>Δ</b>⁽ˡ⁾(<b>A</b>⁽ˡ⁻¹⁾)ᵀ = Σⱼ <b>δ</b>ⱼ<b>a</b>ⱼᵀ</p>
+<p style="font-size:26px;line-height:1.4;color:#445064">Column–row expansion of a product. Bias: ∂ℓ/∂<b>b</b> = <b>Δ1</b>.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px;border:1px solid #D5DCE6;border-radius:16px">
+<h3 style="font-size:30px;font-weight:600">One step, <i>η</i> = 0.1</h3>
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:32px;line-height:1.35"><b>W</b>⁽¹⁾ ← [0.9 0.9; 1.1 1.1],  <b>W</b>⁽²⁾ ← [0.8 −1.1]</p>
+<p style="font-size:26px;line-height:1.4;color:#445064">XOR loss 0.5 → 0.48185. [1 1]ᵀ improves (<i>ŷ</i> 1 → −0.17); [0 1]ᵀ and [1 0]ᵀ get worse (1 → 0.32).</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#6B7484">New: <b>Δ</b> = errors of a batch, one column per sample · biases also move: <b>b</b>⁽¹⁾ ← [−0.1 −0.9]ᵀ, <i>b</i>⁽²⁾ ← −0.1</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B7484;text-align:right">10 / 14</p>
+<aside>[Zhe An, about 45 s] Once we have delta, the weight gradient is one line. The derivative with respect to weight w_ij is delta_i times the input a_j, the error coming out of neuron i times the signal going into it. Collected into a matrix, that is the outer product delta times x-transpose: a 2 by 1 times a 1 by 2 gives a 2 by 2 matrix whose columns are all multiples of delta, so it has rank 1. For a batch we get Delta times A-transpose, and by the Week 2 column-row expansion that is the sum of m rank-1 outer products, one per sample; in our XOR batch only [1, 1] has an error, so the batch gradient equals this one. Taking one step with eta = 0.1, the total XOR loss drops from 0.5 to 0.48185. Be honest about the detail: [1, 1] improves a lot, but [0, 1] and [1, 0], which were already right, get worse, because all samples share the same weights. One step lowers the total, not every sample's loss. This loss is the sum over the four samples, not the average.</aside>
+</section>

@@ -1,0 +1,33 @@
+<section id="collapse" data-transition="fade" style="background:#F7F5F0;color:#172033;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;gap:16px">
+<p style="font-size:24px;padding:6px 18px;border-radius:999px;background:#F3DFCC;color:#7A3608">Recall · Week 1 · linearity</p>
+<p style="font-size:24px;padding:6px 18px;border-radius:999px;background:#F3DFCC;color:#7A3608">Recall · Week 5 · rank</p>
+</div>
+<h2 style="font-size:60px;font-weight:600;line-height:1.1;color:#172033">Without <i>φ</i>, any depth collapses into one affine map</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:36px 40px;border:1px solid #DDD8CC;border-radius:16px">
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:44px"><span style="color:#B85410"><b>W</b></span>⁽²⁾(<span style="color:#B85410"><b>W</b></span>⁽¹⁾<span style="color:#1D5FAD"><b>x</b></span> + <span style="color:#0E6E63"><b>b</b></span>⁽¹⁾) + <span style="color:#0E6E63"><b>b</b></span>⁽²⁾  =  <span style="color:#B85410">(<b>W</b>⁽²⁾<b>W</b>⁽¹⁾)</span><span style="color:#1D5FAD"><b>x</b></span> + <span style="color:#0E6E63">(<b>W</b>⁽²⁾<b>b</b>⁽¹⁾ + <b>b</b>⁽²⁾)</span></p>
+<p style="font-size:26px;color:#6B7484">Two layers = one matrix times <b>x</b>, plus one vector. <b>Wx</b> + <b>b</b> is <b>affine</b> (linear plus a shift), not linear: it sends <b>0</b> to <b>b</b>.</p>
+</div>
+<div style="display:flex;gap:28px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFFFF;padding:36px;border:1px solid #DDD8CC;border-radius:16px">
+<h3 style="font-size:30px;font-weight:600">Our XOR net, <i>φ</i> = identity</h3>
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:36px;line-height:1.4"><b>W</b>⁽²⁾<b>W</b>⁽¹⁾ = [−1 −1]<br><b>W</b>⁽²⁾<b>b</b>⁽¹⁾ + <i>b</i>⁽²⁾ = 2</p>
+<p style="font-size:26px;line-height:1.4;color:#445064">Both give [2 1 1 0]: not XOR.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFFFF;padding:36px;border:1px solid #DDD8CC;border-radius:16px">
+<h3 style="font-size:30px;font-weight:600">Rank can only shrink</h3>
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:36px;line-height:1.4">rank(<b>W</b>⁽²⁾<b>W</b>⁽¹⁾)<br>≤ min(rank <b>W</b>⁽¹⁾, rank <b>W</b>⁽²⁾)</p>
+<p style="font-size:26px;line-height:1.4;color:#445064">A narrow layer is a bottleneck.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFFFF;padding:36px;border:1px solid #DDD8CC;border-radius:16px">
+<h3 style="font-size:30px;font-weight:600">Best affine fit to XOR</h3>
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:36px;line-height:1.4">least squares ⟹<br><i>ŷ</i> = 0.5 at all 4 points</p>
+<p style="font-size:26px;line-height:1.4;color:#445064">Week 10 normal equations; ℓ = 0.5.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#6B7484">Bonus: [<b>W</b> <b>b</b>; <b>0</b>ᵀ 1][<b>x</b>; 1] makes the affine map linear, and stacking layers is block multiplication.</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B7484;text-align:right">5 / 14</p>
+<aside>[Voon, about 50 s] Why do we need phi at all? Remove it and expand two layers: W2 times (W1 x plus b1) plus b2 regroups into one matrix W2 W1 times x, plus one vector. So a hundred layers without phi are worth exactly one layer. Strictly, W x plus b is affine, not linear, because it sends zero to b; Week 1's definition of linear needs f(0) = 0. On our numbers: with the identity activation the network equals the single map [-1 -1] x + 2, giving 2, 1, 1, 0, not XOR. Week 5 adds that rank can only shrink through a product, so a narrow layer is a bottleneck. And Week 10 least squares shows the best affine fit to XOR predicts 0.5 everywhere. If asked: the homogeneous trick appends a 1 to x so the affine map becomes one bigger linear map, and stacking layers is block matrix multiplication.</aside>
+</section>

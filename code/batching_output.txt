@@ -1,0 +1,7 @@
+CPU: x86_64, os.cpu_count() = 2, NumPy 2.5.3
+network 784->128->10, m = 1024, best of 7 (median in brackets)
+FLOPs (2 n_out n_in m per layer): layer1 205,520,896, layer2 2,621,440, total 208,142,336
+loop of mat-vec :    21.18 ms (27.15)  ->   9.83 GFLOP/s
+one mat-mat     :     3.52 ms (3.58)  ->  59.06 GFLOP/s
+speed-up (best/best): 6.0x   (median/median): 7.6x
+outputs identical (allclose): True

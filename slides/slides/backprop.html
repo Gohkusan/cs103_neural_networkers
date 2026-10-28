@@ -1,0 +1,54 @@
+<section id="backprop" data-transition="fade" style="background:#EEF1F5;color:#172033;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;gap:16px">
+<p style="font-size:24px;padding:6px 18px;border-radius:999px;background:#F3DFCC;color:#7A3608">Recall · Week 3 · transpose</p>
+<p style="font-size:24px;padding:6px 18px;border-radius:999px;background:#F3DFCC;color:#7A3608">Recall · Week 2 · Hadamard ⊙</p>
+</div>
+<h2 style="font-size:60px;font-weight:600;line-height:1.1;color:#172033">Backprop runs the same chain backwards through <b>W</b>ᵀ and ⊙</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;font-family:'STIX Two Text', 'Times New Roman', serif;font-size:36px">
+<div style="display:flex;gap:18px;align-items:center">
+<p style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:24px;color:#6B7484;width:150px">forward</p>
+<p style="padding:8px 20px;border-radius:12px;background:#FFFFFF;color:#1D5FAD"><b>x</b></p>
+<x-shape kind="arrow-right" style="background:#9AA3B2;width:48px;height:24px"></x-shape>
+<p style="padding:8px 20px;border-radius:12px;background:#F3DFCC;color:#7A3608"><b>W</b>⁽¹⁾</p>
+<x-shape kind="arrow-right" style="background:#9AA3B2;width:48px;height:24px"></x-shape>
+<p style="padding:8px 20px;border-radius:12px;background:#FFFFFF;color:#6A3DB8"><b>z</b>⁽¹⁾</p>
+<x-shape kind="arrow-right" style="background:#9AA3B2;width:48px;height:24px"></x-shape>
+<p style="padding:8px 20px;border-radius:12px;background:#FFFFFF;color:#172033"><i>φ</i></p>
+<x-shape kind="arrow-right" style="background:#9AA3B2;width:48px;height:24px"></x-shape>
+<p style="padding:8px 20px;border-radius:12px;background:#FFFFFF;color:#1D5FAD"><b>a</b>⁽¹⁾</p>
+<x-shape kind="arrow-right" style="background:#9AA3B2;width:48px;height:24px"></x-shape>
+<p style="padding:8px 20px;border-radius:12px;background:#F3DFCC;color:#7A3608"><b>W</b>⁽²⁾</p>
+<x-shape kind="arrow-right" style="background:#9AA3B2;width:48px;height:24px"></x-shape>
+<p style="padding:8px 20px;border-radius:12px;background:#FFFFFF;color:#1D5FAD"><i>ŷ</i></p>
+</div>
+<div style="display:flex;gap:18px;align-items:center">
+<p style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:24px;color:#B3261E;width:150px">backward</p>
+<p style="padding:8px 20px;border-radius:12px;background:#FFFFFF;color:#B3261E"><b>δ</b>⁽¹⁾</p>
+<x-shape kind="arrow-left" style="background:#B3261E;width:48px;height:24px"></x-shape>
+<p style="padding:8px 20px;border-radius:12px;background:#FFFFFF;color:#172033">⊙ <i>φ</i>′(<b>z</b>⁽¹⁾)</p>
+<x-shape kind="arrow-left" style="background:#B3261E;width:48px;height:24px"></x-shape>
+<p style="padding:8px 20px;border-radius:12px;background:#F3DFCC;color:#7A3608">(<b>W</b>⁽²⁾)ᵀ</p>
+<x-shape kind="arrow-left" style="background:#B3261E;width:48px;height:24px"></x-shape>
+<p style="padding:8px 20px;border-radius:12px;background:#FFFFFF;color:#B3261E"><i>δ</i>⁽²⁾ = <i>ŷ</i> − <i>y</i></p>
+</div>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:40px"><span style="color:#B3261E"><b>δ</b></span>⁽ˡ⁾ = [(<span style="color:#B85410"><b>W</b></span>⁽ˡ⁺¹⁾)ᵀ<span style="color:#B3261E"><b>δ</b></span>⁽ˡ⁺¹⁾] ⊙ <i>φ</i>′(<span style="color:#6A3DB8"><b>z</b></span>⁽ˡ⁾)</p>
+<p style="font-size:24px;color:#6B7484"><i>n</i>ₗ × 1  =  [(<i>n</i>ₗ × <i>n</i>ₗ₊₁)(<i>n</i>ₗ₊₁ × 1)]  ⊙  (<i>n</i>ₗ × 1)</p>
+<p style="font-size:26px;line-height:1.4;color:#445064"><b>ᵀ</b>: <b>z</b> = <b>Wa</b> has Jacobian <b>W</b>, and a gradient flows back through its transpose. <b>⊙</b>: element-wise <i>φ</i> has a diagonal Jacobian.</p>
+</div>
+<div style="width:600px;display:flex;flex-direction:column;gap:10px;background:#FFFFFF;padding:32px;border:1px solid #D5DCE6;border-radius:16px;font-family:'STIX Two Text', 'Times New Roman', serif;font-size:32px;line-height:1.35">
+<p style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:24px;color:#6B7484"><b>x</b> = [1 1]ᵀ, <i>y</i> = 0, start <b>W</b>⁽²⁾ = [1 −1]</p>
+<p><i>ŷ</i> = 1, so <i>δ</i>⁽²⁾ = 1</p>
+<p>(<b>W</b>⁽²⁾)ᵀ<i>δ</i>⁽²⁾ = [1 −1]ᵀ</p>
+<p>ReLU′(<b>z</b>⁽¹⁾) = [1 1]ᵀ</p>
+<p style="color:#B3261E"><b>δ</b>⁽¹⁾ = [1 −1]ᵀ</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#6B7484">New: <b>δ</b>⁽ˡ⁾ = ∂ℓ/∂<b>z</b>⁽ˡ⁾ error signal · ⊙ element-wise (Hadamard) product · ReLU′(0) := 0</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B7484;text-align:right">9 / 14</p>
+<aside>[Zhe An, about 55 s] Backpropagation is the chain rule written with matrices, and it is the forward diagram run in reverse. Define delta for layer l as the derivative of the loss with respect to that layer's pre-activation z. At the output with a linear output and squared loss, delta is just y-hat minus y. To move back one layer we do two things. First multiply by W transpose: forward, z = W a has Jacobian W, and for a scalar loss the gradient travels back through the Jacobian transposed, Week 3. Shapes confirm it: W2 is 1 by 2, so W2-transpose is 2 by 1 and turns a 1-number error into a 2-entry error. Second, take the Hadamard product with phi-prime of z, because phi acts entry by entry, so its Jacobian is diagonal, and a diagonal matrix times a vector is an element-wise product. On our numbers we use x = [1, 1] with target 0, after changing W2 to [1, -1] so the network is wrong: y-hat is 1, delta-2 is 1, W2-transpose times 1 is [1, -1], ReLU-prime is [1, 1] since both z entries are positive, so delta-1 is [1, -1].</aside>
+</section>

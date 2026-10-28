@@ -1,0 +1,32 @@
+<section id="takeaways" data-transition="fade" style="background:#172033;color:#F3F1EA;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:44px">
+<h2 style="font-size:60px;font-weight:600;line-height:1.1;color:#F3F1EA">Three linear-algebra operations power deep learning</h2>
+<div style="display:flex;gap:28px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#22304A;padding:36px;border-radius:16px;border-top:6px solid #F0A35E">
+<h3 style="font-size:32px;font-weight:600;color:#F3F1EA">Matrix product</h3>
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:36px;color:#F3F1EA"><b>Z</b> = <b>WA</b> + <b>b1</b>ᵀ</p>
+<p style="font-size:26px;line-height:1.4;color:#C9D2E0">Forward pass and batching; <b>W</b>ᵀ carries errors back.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#22304A;padding:36px;border-radius:16px;border-top:6px solid #F0A35E">
+<h3 style="font-size:32px;font-weight:600;color:#F3F1EA">Outer product</h3>
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:36px;color:#F3F1EA">∂ℓ/∂<b>W</b> = <b>δa</b>ᵀ</p>
+<p style="font-size:26px;line-height:1.4;color:#C9D2E0">Each sample’s weight gradient has rank 1.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#22304A;padding:36px;border-radius:16px;border-top:6px solid #F0A35E">
+<h3 style="font-size:32px;font-weight:600;color:#F3F1EA">Hadamard product</h3>
+<p style="font-family:'STIX Two Text', 'Times New Roman', serif;font-size:36px;color:#F3F1EA">[<b>W</b>ᵀ<b>δ</b>] ⊙ <i>φ</i>′(<b>z</b>)</p>
+<p style="font-size:26px;line-height:1.4;color:#C9D2E0">The bend’s slope, entry by entry.</p>
+</div>
+</div>
+<p style="font-size:32px;line-height:1.4;color:#F0A35E">And the bend <i>φ</i> is what makes depth worth having.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 48px;font-size:24px;color:#AEB8C8">
+<p>Goodfellow, Bengio &amp; Courville, <i>Deep Learning</i> (2016), Ch. 4, 6, 8</p>
+<p>Nielsen, <i>Neural Networks and Deep Learning</i>, Ch. 2</p>
+<p>Parr &amp; Howard, “The Matrix Calculus You Need for Deep Learning”</p>
+<p>Stanford CS231n course notes</p>
+<p>Baydin et al., “Automatic Differentiation in ML”, JMLR (2018)</p>
+<p>Pascanu, Mikolov &amp; Bengio, ICML (2013)</p>
+<p>Goh, “Why Momentum Really Works”, Distill (2017)</p>
+<p>NVIDIA, Deep Learning Performance Guide</p>
+</div>
+<aside>[Zyik, about 20 s] To sum up: three Week 2 operations do all the work. Matrix products run the forward pass, handle whole batches at once, and with a transpose carry errors backwards. Outer products give each weight gradient, rank 1 per sample. Hadamard products apply the slope of the bend entry by entry. And the bend itself is what stops all those layers collapsing into one. Every figure and number in this talk is our own, produced by our code. Thank you; we are happy to take questions.</aside>
+</section>

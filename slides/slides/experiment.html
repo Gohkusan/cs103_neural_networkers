@@ -1,0 +1,20 @@
+<section id="experiment" data-transition="fade" style="background:#F7F5F0;color:#172033;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;gap:16px">
+<p style="font-size:24px;padding:6px 18px;border-radius:999px;background:#DCE7F5;color:#174A8C">Our experiment · NumPy, matrix form only</p>
+</div>
+<h2 style="font-size:60px;font-weight:600;line-height:1.1;color:#172033">Our experiment: identity fails XOR, every bend solves it</h2>
+</div>
+<div style="display:flex;gap:40px;flex:1">
+<img src="/_blob/f71b068b55b220cce1048ca5223091a0" alt="Decision boundaries for XOR and two moons with identity, logistic, tanh and ReLU hidden activations, seed 0. Identity on XOR shows no boundary." style="width:1020px;height:510px;object-fit:contain;background:#FFFFFF;border-radius:12px">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<img src="/_blob/a7a12cddf73f17249cb9626d0e6867f4" alt="Training loss curves on a log scale for each activation on XOR and moons, mean over 5 seeds with min to max band." style="width:604px;height:210px;object-fit:contain;background:#FFFFFF;border-radius:12px">
+<p style="font-size:26px;line-height:1.4;color:#445064"><b>Identity:</b> <i>ŷ</i> = 0.5 everywhere on XOR, ℓ = ln 2. The collapse, observed.</p>
+<p style="font-size:26px;line-height:1.4;color:#445064"><b>XOR:</b> ReLU 66–133 and tanh 105–167 epochs; logistic 651–1416.</p>
+<p style="font-size:26px;line-height:1.4;color:#445064"><b>Moons:</b> only tanh hit 100% on all 5 seeds; ReLU stalled on 2 (cause unknown).</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#6B7484">2 → 8 → 1, logistic output, cross-entropy, <i>η</i> = 0.5, 5000 full-batch epochs, seeds 0–4, training accuracy. One setting only.</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B7484;text-align:right">13 / 14</p>
+<aside>[Gong Zu, about 45 s] We implemented the whole thing ourselves in NumPy using only the matrix equations from this talk, and checked the gradients against finite differences. Same network, same starting weights, only the hidden activation changes. With the identity activation the network cannot solve XOR at all: it outputs 0.5 at every point and the loss sits at ln 2, which is exactly the collapse argument from slide 5, seen in practice. All three bends solve XOR on every seed; ReLU and tanh got under a loss of 0.1 in roughly 70 to 170 epochs (one epoch is one pass over the data), logistic took 650 to 1400, consistent with its small derivative. On the two-moons data only tanh reached 100 percent training accuracy on all five seeds; ReLU stalled on two seeds and we do not know why yet, it was not dead units. These are results from one learning rate, one width and one budget, so they are observations, not general rankings.</aside>
+</section>

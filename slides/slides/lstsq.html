@@ -1,0 +1,31 @@
+<section id="lstsq" data-transition="fade" style="background:#F7F5F0;color:#172033;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;gap:16px">
+<p style="font-size:24px;padding:6px 18px;border-radius:999px;background:#F3DFCC;color:#7A3608">Recall · Week 10 · least squares</p>
+<p style="font-size:24px;padding:6px 18px;border-radius:999px;background:#F3DFCC;color:#7A3608">Recall · Week 11 · eigenvalues</p>
+</div>
+<h2 style="font-size:60px;font-weight:600;line-height:1.1;color:#172033">A one-layer linear net is least squares, and <i>η</i> is set by eigenvalues</h2>
+</div>
+<div style="display:flex;gap:56px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:22px;font-family:'STIX Two Text', 'Times New Roman', serif;font-size:38px">
+<p style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:26px;color:#6B7484">Samples as rows: <b>A</b> = <b>X</b>ᵀ (<i>m</i> × <i>n</i>), weights <b>w</b>, targets <b>y</b>, <i>φ</i> = identity, no bias</p>
+<p>ℓ = ½‖<b>Aw</b> − <b>y</b>‖²  ⟹  gradient <b>A</b>ᵀ(<b>Aw</b> − <b>y</b>)</p>
+<p>gradient = <b>0</b>  ⟹  <b>A</b>ᵀ<b>A</b><b>ŵ</b> = <b>A</b>ᵀ<b>y</b>  <span style="font-family:'IBM Plex Sans', Arial, sans-serif;font-size:26px;color:#7A3608">normal equations</span></p>
+<p>error <b>e</b>ₖ = <b>w</b>ₖ − <b>ŵ</b>:  <b>e</b>ₖ₊₁ = [<b>I</b> − <i>η</i><b>A</b>ᵀ<b>A</b>]<b>e</b>ₖ</p>
+<p style="color:#B85410">converges  ⟺  0 &lt; <i>η</i> &lt; 2/<i>λ</i>ₘₐₓ(<b>A</b>ᵀ<b>A</b>)</p>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px;border:1px solid #DDD8CC;border-radius:16px">
+<h3 style="font-size:30px;font-weight:600">Why the bound</h3>
+<p style="font-size:26px;line-height:1.4;color:#445064">A difference equation: each eigen-direction of <b>A</b>ᵀ<b>A</b> shrinks by 1 − <i>ηλ</i>ᵢ per step, so every |1 − <i>ηλ</i>ᵢ| must be below 1.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px;border:1px solid #DDD8CC;border-radius:16px">
+<h3 style="font-size:30px;font-weight:600">We checked it</h3>
+<p style="font-size:26px;line-height:1.4;color:#445064"><i>η</i> = 0.9(2/<i>λ</i>ₘₐₓ) converged; <i>η</i> = 1.05(2/<i>λ</i>ₘₐₓ) blew up. Once <i>φ</i> bends, no normal equations exist: only descent.</p>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#6B7484">Here <b>y</b> plays the Week 10 right-hand side <b>b</b>; we renamed it to keep <b>b</b> for biases. Sources: Goodfellow et al. Ch. 4; Goh (2017).</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B7484;text-align:right">11 / 14</p>
+<aside>[Haide, about 50 s] Neural networks generalise something we already trust. Take one layer, no activation, squared loss, and put the samples as the rows of A. The loss is half the squared norm of A w minus y. Its gradient is A-transpose times the residual; setting it to zero gives exactly the Week 10 normal equations. Note we renamed the book's b to y, because b is our bias. Gradient descent instead takes small steps. Subtract the solution and the error obeys e_(k+1) = (I minus eta A-transpose A) e_k, a Week 11 difference equation. A-transpose A is symmetric with non-negative eigenvalues, so in its eigenbasis each direction is multiplied by 1 minus eta lambda_i every step. That shrinks only if eta is between 0 and 2 over the largest eigenvalue. We checked: 0.9 of the bound converged, 1.05 of it diverged. Why not just solve the normal equations? For big problems it is costly and badly conditioned, and once phi is non-linear there is no closed form at all, so descent is the only general tool.</aside>
+</section>
